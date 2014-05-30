@@ -1,0 +1,14 @@
+{
+    "name": "peanutlord/phar-creator",
+    "description": "Console created with symfony to create phar files",
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/console": "2.5.*@dev",
+        "symfony/finder": "*"
+    },
+    "autoload": {
+        "psr-0": {
+            "": "src/"
+        }
+    }
+}

@@ -1,0 +1,1 @@
+Console to create a .phar file via cmd. Just type "console.php phar:create folder1 ... folderN" and you're done :)
