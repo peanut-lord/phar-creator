@@ -107,6 +107,7 @@ class CreatePharCommand extends Command
 	{
 		$stub = <<< 'EOF'
 #!/usr/bin/env php
+<?php
 
 Phar::mapPhar();
 
