@@ -8,4 +8,5 @@ use Symfony\Component\Console\Application;
 //
 $console = new Application();
 $console->add(new CreatePharCommand());
+$console->add(new ListPharContentCommand());
 $console->run();

@@ -11,6 +11,16 @@ class CreatePharCommand extends Command
 {
 
 	/**
+	 * @var bool
+	 */
+	protected $verbose = false;
+
+	/**
+	 * @var
+	 */
+	protected $output;
+
+	/**
 	 * {@inheritdoc}
 	 */
 	protected function configure()
@@ -38,6 +48,10 @@ class CreatePharCommand extends Command
 		$name    = $input->getOption('name');
 		$name    = $this->sanitizeName($name);
 		$folders = $input->getArgument('folders');
+
+		//
+		$this->verbose = $input->getOption('verbose') !== null;
+		$this->output  = $output;
 
 		$this->createPhar($name, $folders);
 	}
@@ -91,6 +105,10 @@ class CreatePharCommand extends Command
 
 		/** @var $file \Symfony\Component\Finder\SplFileInfo */
 		foreach ($files as $file) {
+			if ($this->verbose) {
+				$this->output->writeln(sprintf("<info>Packing %s</info>", $file->getPathname()));
+			}
+
 			$phar->addFile($file->getRealPath(), $file->getPathname());
 		}
 
@@ -106,7 +124,6 @@ class CreatePharCommand extends Command
 	protected function createPharStub()
 	{
 		$stub = <<< 'EOF'
-#!/usr/bin/env php
 <?php
 
 Phar::mapPhar();
